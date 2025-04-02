@@ -1,29 +1,19 @@
-default: &default
+production:
   adapter: postgresql
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
-  timeout: 5000
+  host: <your_rds_endpoint>  # Replace with your RDS endpoint
   port: 5432
+  database: <your_db_name>  # Replace with your DB name
+  username: <your_db_username>  # Replace with your DB username
+  password: <your_db_password>  # Replace with your DB password
+  pool: 5
+  timeout: 5000
 
 development:
-  <<: *default
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['RDS_USERNAME'] %>
-  password: <%= ENV['RDS_PASSWORD']%>
-  host: <%= ENV['RDS_HOSTNAME']%>
-  port: <%= ENV['RDS_PORT']%>
-
-test:
-  <<: *default
-  database: <%= ENV['RDS_DB_NAME']%>
-  username: <%= ENV['RDS_USERNAME']%>
-  password: <%= ENV['RDS_PASSWORD']%>
-  host: <%= ENV['RDS_HOSTNAME']%>
-  port: <%= ENV['RDS_PORT']%>
-
-production:
-  <<: *default
-  database: <%= ENV['RDS_DB_NAME']%>
-  username: <%= ENV['RDS_USERNAME']%>
-  password: <%= ENV['RDS_PASSWORD']%>
-  host: <%= ENV['RDS_HOSTNAME']%>
-  port: <%= ENV['RDS_PORT']%>
+  adapter: postgresql
+  host: <your_rds_endpoint>  # Same as production, but can differ
+  port: 5432
+  database: <your_db_name>  # Same DB name or different for dev
+  username: <your_db_username>  # Same DB username or different
+  password: <your_db_password>  # Same DB password or different
+  pool: 5
+  timeout: 5000

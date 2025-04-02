@@ -1,6 +1,16 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  # Host authorization
+  config.hosts.clear
+  config.hosts << 'localhost'
+  config.hosts << '127.0.0.1'
+  config.hosts << ENV['LB_ENDPOINT'] if ENV['LB_ENDPOINT'].present?
+  if ENV['RAILS_ALLOWED_HOSTS']
+    ENV['RAILS_ALLOWED_HOSTS'].split(',').each do |host|
+      config.hosts << host.strip
+    end
+  end
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -78,7 +88,6 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.hosts <<  "#{ENV['LB_ENDPOINT']}"
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
@@ -88,8 +97,6 @@ Rails.application.configure do
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
-  end
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-end

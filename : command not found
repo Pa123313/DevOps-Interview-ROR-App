@@ -1,0 +1,62 @@
+{
+    "services": [
+        {
+            "serviceArn": "arn:aws:ecs:eu-north-1:717279725185:service/my-ror-cluster/devops-ror-app-service",
+            "serviceName": "devops-ror-app-service",
+            "clusterArn": "arn:aws:ecs:eu-north-1:717279725185:cluster/my-ror-cluster",
+            "loadBalancers": [],
+            "serviceRegistries": [],
+            "status": "ACTIVE",
+            "desiredCount": 1,
+            "runningCount": 0,
+            "pendingCount": 0,
+            "launchType": "EC2",
+            "taskDefinition": "arn:aws:ecs:eu-north-1:717279725185:task-definition/devops-ror-app:3",
+            "deploymentConfiguration": {
+                "deploymentCircuitBreaker": {
+                    "enable": false,
+                    "rollback": false
+                },
+                "maximumPercent": 200,
+                "minimumHealthyPercent": 100
+            },
+            "deployments": [
+                {
+                    "id": "ecs-svc/6711559244946765672",
+                    "status": "PRIMARY",
+                    "taskDefinition": "arn:aws:ecs:eu-north-1:717279725185:task-definition/devops-ror-app:3",
+                    "desiredCount": 1,
+                    "pendingCount": 0,
+                    "runningCount": 0,
+                    "failedTasks": 2,
+                    "createdAt": "2025-03-30T11:54:33.123000+00:00",
+                    "updatedAt": "2025-03-30T11:54:49.223000+00:00",
+                    "launchType": "EC2",
+                    "rolloutState": "IN_PROGRESS",
+                    "rolloutStateReason": "ECS deployment ecs-svc/6711559244946765672 in progress."
+                }
+            ],
+            "events": [
+                {
+                    "id": "e7ded86c-36d2-4c9f-8482-6aedafbfd09c",
+                    "createdAt": "2025-03-30T11:54:49.343000+00:00",
+                    "message": "(service devops-ror-app-service) was unable to place a task because no container instance met all of its requirements. Reason: No Container Instances were found in your cluster. For more information, see the Troubleshooting section of the Amazon ECS Developer Guide."
+                }
+            ],
+            "createdAt": "2025-03-30T11:54:33.123000+00:00",
+            "placementConstraints": [],
+            "placementStrategy": [],
+            "healthCheckGracePeriodSeconds": 0,
+            "schedulingStrategy": "REPLICA",
+            "deploymentController": {
+                "type": "ECS"
+            },
+            "createdBy": "arn:aws:iam::717279725185:user/devops-user",
+            "enableECSManagedTags": false,
+            "propagateTags": "NONE",
+            "enableExecuteCommand": false,
+            "availabilityZoneRebalancing": "DISABLED"
+        }
+    ],
+    "failures": []
+}

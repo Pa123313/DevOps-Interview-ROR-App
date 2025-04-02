@@ -1,0 +1,43 @@
+{
+    "family": "rails-app-task",
+    "executionRoleArn": "arn:aws:iam::717279725185:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "containerDefinitions": [
+        {
+            "name": "rails-container",
+            "image": "717279725185.dkr.ecr.eu-north-1.amazonaws.com/my-ror-app:latest",
+            "cpu": 256,
+            "memory": 512,
+            "portMappings": [
+                {
+                    "containerPort": 3000,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "RAILS_ENV",
+                    "value": "production"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "value": "postgres://username:password@your-rds-endpoint:5432/dbname"
+                }
+            ],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/aws/ecs/rails-app",
+                    "awslogs-region": "eu-north-1",
+                    "awslogs-stream-prefix": "rails"
+                }
+            }
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+}
